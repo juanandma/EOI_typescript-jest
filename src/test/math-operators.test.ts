@@ -17,6 +17,7 @@ describe('Operación de suma', () => {
         expect(sum(0.1, 0.2)).toStrictEqual(0.3);
     });
 });
+
 describe('Operación de resta', () => {
     it('resta dos números enteros', () => {
         expect(sub(1, 1)).toStrictEqual(0) ;
