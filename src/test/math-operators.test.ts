@@ -51,3 +51,17 @@ describe('Operación de división', () => {
         expect(div(-2, 0)).toStrictEqual(-Infinity) ;
     });
 });
+describe('Operación de división', () => {
+    it('Si alguno de los parametros es NaN devolvemos "NAN_ERROR"', () => {
+        expect(() => div(NaN, NaN)).toThrowError(NAN_ERROR);
+    });
+    it('dividir dos números enteros', () => {
+        expect(div(0, 2)).toStrictEqual(0) ;
+    });
+    it('Si dividimos por 0 devolvemos Infinity', () => {
+        expect(div(2, 0)).toStrictEqual(Infinity) ;
+    });
+    it('Si dividimos por un número negativo entre 0 devolvemos -Infinity', () => {
+        expect(div(-2, 0)).toStrictEqual(-Infinity) ;
+    });
+});
