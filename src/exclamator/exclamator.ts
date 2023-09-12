@@ -1,4 +1,6 @@
-import { countChars } from "./adapters"
+import { countChars } from "./countChars"
+import { removeExclamationMarks } from "./removeExclamationMarks";
+
 // TODO Remove all exclamation marks from sentence but ensure a exclamation mark at the end of string.
 // For a beginner, you can assume that the input data is always a non empty string, no need to verify it.
 
@@ -17,37 +19,30 @@ import { countChars } from "./adapters"
 
 
 export const removeExclamations = (sentence: string) => {
-    const ocurrences = countChars('!', sentence);
-    if (ocurrences > 200) {
-        return {
-            total: ocurrences,
-            value: 'invalid',
-            limit: 'It has passed the last limit'
-        }
+
+
+    const occurrences = countChars('!', sentence);
+    let result: { total: number; value: string; limit?: string; invalid?: boolean } = {
+        total: occurrences,
+        value: removeExclamationMarks(sentence)
+    };
+
+    const passedlimit = Math.floor(occurrences/50)
+
+
+    if ((1 < passedlimit) && (4 >= passedlimit)) {
+
+        result.limit = 'It has passed '+passedlimit+' limit';
+
     }
-    if (ocurrences > 150) {
-        return {
-            total: ocurrences,
-            value: sentence,
-            limit: 'It has passed third limit'
-        }
+    else if (4 < passedlimit){
+
+        result.limit = 'It has passed the last limit';
+        result.invalid = true;
     }
-    if (ocurrences > 100) {
-        return {
-            total: ocurrences,
-            value: sentence,
-            limit: 'It has passed second limit'
-        }
-    }
-    if (ocurrences > 50) {
-        return {
-            total: ocurrences,
-            value: sentence,
-            limit: 'It has passed first limit'
-        }
-    }    
-    return {
-        total: ocurrences,
-        value: sentence
-    }
-}
+
+    return result;
+
+};
+
+
